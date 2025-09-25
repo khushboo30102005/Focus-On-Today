@@ -7,7 +7,35 @@ const progressLabel = document.querySelector('.progress-label')
 const bottomQuote = document.querySelector('.bottom-quote')
 const resetGoals = document.querySelector('.reset')
 const goalBox = document.querySelectorAll('.goal-box')
+const themeSwitcherBtn = document.querySelector('.mode')
+const mode = document.querySelector('.mode')
 const totalNoOFGoal = inputFields.length
+
+// THEME SWITCHER ==>
+
+let theme = localStorage.getItem('theme') || 'light'
+
+if (theme === 'light') {
+  document.body.classList.remove('dark')
+  mode.innerHTML = '<i class="fa-solid fa-moon"></i> dark mode'
+} else if (theme === 'dark') {
+  document.body.classList.add('dark')
+  mode.innerHTML = ` <i class="fa-solid fa-sun"></i>  light mode`
+}
+
+themeSwitcherBtn.addEventListener('click', () => {
+  if (theme === 'light') {
+    theme = 'dark'
+    document.body.classList.add('dark')
+    mode.innerHTML = ` <i class="fa-solid fa-sun"></i>  light mode`
+  } else if (theme === 'dark') {
+    theme = 'light'
+    document.body.classList.remove('dark')
+    mode.innerHTML = '<i class="fa-solid fa-moon"></i> dark mode'
+  }
+  localStorage.setItem('theme', theme)
+})
+
 
 const progressQuotes = [
 
@@ -24,17 +52,7 @@ const progressQuotes = [
 ]
 
 
-// const allGoals = JSON.parse(localStorage.getItem('allGoals')) || {
-//   first: {
-//     name: '',
-//   },
-//   second: {
-//     name: '',
-//   },
-//   third: {
-//     name: '',
-//   },
-// }
+
 
 const allGoals = JSON.parse(localStorage.getItem('allGoals')) || {}
 
@@ -122,14 +140,15 @@ inputFields.forEach((input) => {
 
 resetGoals.addEventListener('click', (e) => {
 
+
   localStorage.removeItem("allGoals");
 
   Object.keys(allGoals).forEach(key => delete allGoals[key]);
 
   inputFields.forEach(input => input.value = "");
-  
+
   goalBox.forEach(goal => goal.classList.remove('completed'))
-  
+
   completedGoalsCount = 0
   progressBar.firstElementChild.style.width = `${completedGoalsCount / totalNoOFGoal * 100}%`
 
@@ -140,3 +159,4 @@ resetGoals.addEventListener('click', (e) => {
   bottomQuote.innerText = progressQuotes[completedGoalsCount + totalNoOFGoal + 1]
 
 })
+
