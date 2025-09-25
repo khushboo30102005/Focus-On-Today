@@ -3,9 +3,43 @@
 }
 
 body {
-  background-color: #F2F8ED;
+  --background-color: #F2F8ED;
+  --element-color: #FBFBFB;
+  --goal-element-color: #fff;
+  --placeholder-color: #D9D9D9;
+  --today-color: black;
+  --colors: #858585;
+  --reset: #61481C;
+  --checkbox-color: #61481C4D;
+  background-color: var(--background-color);
   font-family: "Poppins", sans-serif;
   margin: 0;
+}
+
+body.dark {
+  --background-color: #1E201E;
+  --element-color: #3C3D37;
+  --goal-element-color: #4b5049;
+  --today-color: #fff;
+  --colors: #cdcdcd;
+  --reset: #cdcdcd;
+  --checkbox-color: #e9990d;
+}
+
+.mode-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-top: 10px;
+  color: var(--reset);
+}
+
+.mode {
+  box-shadow: 1px 1px 4px -1px;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 10px;
+  cursor: pointer;
 }
 
 main {
@@ -20,13 +54,17 @@ main {
 }
 
 .title span {
-  color: #61481C;
+  color: var(--reset);
+}
+
+.sub-title {
+  color: var(--today-color);
 }
 
 .app-container {
   width: 90%;
   max-width: 660px;
-  background-color: #FBFBFB;
+  background-color: var(--element-color);
   margin: auto;
   border-radius: 15px;
   padding: 2% 5%;
@@ -54,7 +92,7 @@ main {
 
 .progress-label {
   font-size: 1rem;
-  color: #858585;
+  color: var(--colors);
 }
 
 .progress-bar {
@@ -98,7 +136,7 @@ main {
 
 .goal-box {
   height: 80px;
-  background-color: #fff;
+  background-color: var(--goal-element-color);
   border: 1px solid #0000001A;
   border-radius: 17px;
   margin-block: 42px;
@@ -111,7 +149,7 @@ main {
 .custom-checkbox {
   width: 24px;
   height: 24px;
-  border: 2px solid #61481C4D;
+  border: 2px solid var(--checkbox-color);
   border-radius: 50%;
   margin-left: 25px;
   flex-shrink: 0;
@@ -133,17 +171,19 @@ main {
   font-weight: 500;
   border: none;
   outline: none;
+  background-color: inherit;
+  color: var(--today-color);
 }
 
 .goal-input::placeholder {
-  color: #D9D9D9;
+  color: var(--placeholder-color);
 }
 
 .reset {
   font-size: 0.9rem;
-  color: #61481C;
+  color: var(--reset);
   font-weight: 500;
-  border: 2px solid #ffff;
+  box-shadow: 1px 1px 4px -1px;
   width: max-content;
   padding: 5px;
   border-radius: 8px;
@@ -151,14 +191,19 @@ main {
   cursor: pointer;
 }
 
+.reset:hover {
+  background-color: #49a300d7;
+}
+
 .bottom-quote {
+  color: var(--today-color);
   font-weight: 600;
   text-align: center;
   margin: 50px;
 }
 
 .by-Made {
-  color: #858585;
+  color: var(--colors);
   font-weight: 500;
   font-size: 10px;
   text-align: center;
@@ -183,7 +228,7 @@ main {
     font-size: 2rem;
   }
 
-  .sub-title{
+  .sub-title {
     cursor: pointer;
     font-size: 1.5rem;
   }
@@ -216,7 +261,7 @@ main {
     font-size: 12px;
   }
 
-  .reset{
+  .reset {
     font-size: 0.6rem;
   }
 
